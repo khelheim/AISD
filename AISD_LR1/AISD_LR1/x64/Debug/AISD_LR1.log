@@ -1,0 +1,83 @@
+﻿  main.cpp
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(88,42): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(319): message : выполняется компиляция ссылки на экземпляр шаблон функции "void testListOperations<float>(T,int)"
+          with
+          [
+              T=float
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(100,35): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(107,100): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(113,34): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(121,38): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(130,31): warning C4244: аргумент: преобразование "T" в "const T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(200,27): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(252,28): warning C4244: =: преобразование "T" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\list.h(36,38): warning C4101: e: неиспользованная локальная переменная
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\list.h(32): message : во время компиляции функции-члена класс шаблон "List<int>::List(size_t)"
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(7): message : выполняется компиляция ссылки на экземпляр шаблон функции "List<int>::List(size_t)"
+C:\Users\ahv03\source\repos\AISD_LR1\AISD_LR1\utils.h(7): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "List<int>"
+  AISD_LR1.vcxproj -> C:\Users\ahv03\source\repos\AISD_LR1\x64\Debug\AISD_LR1.exe
