@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <vector>
+#include <functional>
+
 using namespace std;
 
 template<typename T>
@@ -12,22 +15,37 @@ private:
     size_t initial_capacity; // Первоначальный размер вместимости
     size_t size;       // Текущее количество элементов в списке
     size_t last_operation_count;    // Отслеживание просмотренных элементов в операциях
+    std::vector<std::function<void()>> update_iterators_callbacks;
 
     void resize(size_t new_capacity) {
         T* new_elements = new T[new_capacity];
         size_t i = 0;
-        
+
         capacity = new_capacity;
-        
+
         for (auto it = begin(); it != end(); it++, i++) {
             new_elements[i] = *it;
         }
 
         delete[] elements;
         elements = new_elements;
+
+        // Уведомление о необходимости обновления итераторов
+        notify_iterators();
     }
 
 public:
+
+    void register_update_callback(const std::function<void()>& callback) {
+        update_iterators_callbacks.push_back(callback);
+    }
+
+    void notify_iterators() {
+        for (auto& callback : update_iterators_callbacks) {
+            callback();
+        }
+    }
+
     // Конструктор
     List(size_t initial_capacity) : initial_capacity(initial_capacity), capacity(initial_capacity), size(0), last_operation_count(0) {
         try {
@@ -45,7 +63,7 @@ public:
     List(const List& other) : initial_capacity(other.initial_capacity), capacity(other.capacity), size(other.size), last_operation_count(other.last_operation_count) {
         try {
             elements = new T[capacity];
-            
+
             for (auto it = begin(), i = 0; it != end(); it++, i++) {
                 *it = other.elements[i];
             }
@@ -90,7 +108,7 @@ public:
     // Опрос наличия заданного значения
     bool contains(const T& value) {
         last_operation_count = 0;
-        
+
         for (auto it = begin(); it != end(); it++) {
             last_operation_count++;
             if (*it == value) {
@@ -158,7 +176,7 @@ public:
     // Удаление заданного значения из списка
     bool remove(const T& value) {
         size_t index = index_of(value);
-        
+
         if (index != -1) {
             erase(index);
             return true;
@@ -276,7 +294,7 @@ public:
     ReverseIterator rend() {
         return ReverseIterator(elements - 1);
     }
-    
+
     bool is_forward_iterator_equal_to_end(ForwardIterator it) {
         return it == end();
     }

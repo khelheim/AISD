@@ -4,15 +4,21 @@
 
 template<typename T>
 void testListOperations(T type, int capacity) {
-    List<int> myList(capacity);
-    List<int>::ForwardIterator it = myList.end();
-    List<int>::ReverseIterator rit = myList.rend();
+    List<T> myList(capacity);
+    typename List<T>::ForwardIterator it = myList.end();
+    typename List<T>::ReverseIterator rit = myList.rend();
     bool is_show_list_menu = true;
     bool is_iterator_init = false;
     bool is_reverse_iterator_init = false;
     T value;
     int choice = 0;
     size_t index = 0;
+
+    // Регистрация callback для обновления итераторов
+    myList.register_update_callback([&]() {
+        it = myList.end();
+        rit = myList.rbegin();
+        });
 
     while (true) {
         cout << "\n--- Меню операций ---\n";
@@ -72,42 +78,42 @@ void testListOperations(T type, int capacity) {
             case 1:
                 cout << "-->Размер списка: " << myList.get_size() << endl;
                 break;
-            
+
             case 2:
                 myList.clear();
                 is_iterator_init = is_reverse_iterator_init = false;
                 cout << "-->Список успешно очищен.\n";
                 break;
-            
+
             case 3:
                 cout << (myList.is_empty() ? "-->Список пуст.\n" : "-->Список не пуст.\n");
                 break;
-            
+
             case 4:
                 cout << "==>Введите значение для проверки его наличия в списке: ";
                 cin >> value;
                 cout << (myList.contains(value) ? "-->Значение найдено в списке.\n" : "-->Значение в списке отсутствует.\n");
                 break;
-            
+
             case 5:
                 cout << "==>Введите индекс для получения значения: ";
                 cin >> index;
                 cout << "-->Значение: " << myList.get(index) << endl;
                 break;
-            
+
             case 6:
                 cout << "==>Введите индекс и новое значение: ";
                 cin >> index >> value;
                 myList.set(index, value);
                 cout << "-->Значение успешно изменено.\n";
                 break;
-            
+
             case 7:
                 cout << "==>Введите значение для поиска индекса : ";
                 cin >> value;
                 cout << "==>Индекс заданного значения: " << myList.index_of(value) << endl;
                 break;
-            
+
             case 8:
                 cout << "==>Введите значение элемента: ";
                 cin >> value;
@@ -115,7 +121,7 @@ void testListOperations(T type, int capacity) {
                 is_iterator_init = is_reverse_iterator_init = false;
                 cout << "-->Элемент добавлен.\n" << endl;
                 break;
-            
+
             case 9:
                 cout << "==>Введите индекс и значение для вставки: ";
                 cin >> index >> value;
@@ -123,14 +129,14 @@ void testListOperations(T type, int capacity) {
                 is_iterator_init = is_reverse_iterator_init = false;
                 cout << "-->Элемент вставлен.\n";
                 break;
-            
+
             case 10:
                 cout << "==>Введите значение элемента: ";
                 cin >> value;
                 is_iterator_init = is_reverse_iterator_init = false;
                 myList.remove(value) ? cout << "-->Элемент удален.\n" : cout << "-->Элемент не удален.\n";
                 break;
-            
+
             case 11:
                 cout << "==>Введите индекс удаляемого элемента: ";
                 cin >> index;
@@ -138,20 +144,20 @@ void testListOperations(T type, int capacity) {
                 is_iterator_init = is_reverse_iterator_init = false;
                 cout << "-->Элемент удален.\n";
                 break;
-            
+
             case 12:
-                cout << "-->Количество просмотренных элементов последней операции: " 
+                cout << "-->Количество просмотренных элементов последней операции: "
                     << myList.get_last_operation_count() << endl;
                 break;
-    
+
             case 13:
                 cout << "-->Элементы списка: ";
                 myList.display();
-                break;   
+                break;
 
             case 14:
                 cout << "-->Вместимость списка: " << myList.get_capacity() << endl;
-                break; 
+                break;
 
             case 15:
                 is_iterator_init = true;
@@ -181,7 +187,7 @@ void testListOperations(T type, int capacity) {
                     cout << "-->Итератор инкрементирован" << endl;
                 }
                 else {
-                    cout << "Итератор указыввает на end" << endl;
+                    cout << "Итератор указывает на end" << endl;
                 }
                 break;
 
@@ -233,7 +239,7 @@ void testListOperations(T type, int capacity) {
                     cout << "-->Итератор декрементирован" << endl;
                 }
                 else {
-                    cout << "Обратный итератор указыввает на rend" << endl;
+                    cout << "Обратный итератор указывает на rend" << endl;
                 }
                 break;
 
@@ -260,7 +266,7 @@ void testListOperations(T type, int capacity) {
             case 27:
                 cout << "-->Окончание работы со списком.\n";
                 return;
-            
+
             default:
                 cout << "-->Неизвестная операция. Пожалуйста, попробуйте снова.\n";
                 break;
